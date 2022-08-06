@@ -1,7 +1,7 @@
 function [tstat, p, cv] = npperm(A, B, iter, correction)
 
-% Written by Tylor J Harlow 8/6/2022.  Analytic assistance from Matt B Jane
-% and credit to SCB for benhoch function.
+% Written by Tylor J Harlow 8/6/2022.  Analytic assistance from Matthew B Jane
+% and credit to Scott C Bressler for benhoch function.
 % This function performs non-parametric permutation testing of
 % time series data. The function is designed to operate at two
 % potential levels: individual or group.
