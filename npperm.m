@@ -17,7 +17,6 @@ function [tstat, p, cv] = npperm(A, B, iter, correction)
 %     Benjamini-Hochberg Procedure to address false discovery rate (FDR)
 
 
-
 % Setup
 if nargin < 3
     iter = 100;
@@ -32,7 +31,7 @@ for j = 1:iter
     for i = 1:N
         Atrials = size(A{i},1);
         Btrials = size(B{i},1);
-        AllTrials = (1:(Atrials + Btrials))';
+        AllTrials = [1:(Atrials + Btrials),1];
         subjectAll = cat(1,A{i},B{i});
         [~,idx] = datasample(AllTrials,Atrials,1,"Replace",true);
         [~,idx2] = datasample(AllTrials,Btrials,1,"Replace",true);
@@ -48,7 +47,7 @@ for j = 1:iter
 
     % Shuffle Trial Labels at the group level
     All = cat(1,subjectcondA,subjectcondB);
-    groupcount = (1:size(All,1))';
+    groupcount = [1:size(All,1),1];
     [~,idx] = datasample(groupcount,N,1,"Replace",true);
     [~,idx2] = datasample(groupcount,N,1,"Replace",true);
     groupA = All(idx,:);
@@ -97,7 +96,7 @@ end
 
 [pI,I] = sort(p(:)); % sort p-values
 m = numel(pI); % total number of tests
-r = (1:m)'; % inidividual p-value ranks
+r = [1:m,1]; % inidividual p-value ranks
 CVs = (r/m)*FDR; % Benjamini-Hochberg critical value
 h0 = pI<CVs; % find highest p-value < Benjamini-Hochberg critical value
 h0(1:find(h0==1,1,'last')) = 1; % reset all higher ranks to h = 1
