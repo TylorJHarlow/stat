@@ -7,7 +7,7 @@ function [MI, MeanAmp]=MI(Pha, Am)
     % dimensions = [time x trials] if event related
     % dimensions = [trials x time] if global
     
-    nbin = 36;
+    nbin = 18;
     position=zeros(1,nbin);
     winsize = 2*pi/nbin;
      
